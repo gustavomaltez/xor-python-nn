@@ -1,6 +1,6 @@
 # xor-python-nn
 
-A neural network built from scratch. No frameworks, no abstractions, just NumPy and math.
+A neural network built from scratch. No frameworks, no abstractions, just Python and math.
 
 The goal isn't to build something useful. It's to understand what's actually happening inside a neural network when it learns something.
 
@@ -37,3 +37,11 @@ No TensorFlow. No PyTorch. No scikit-learn. Not even `math` for the activation f
 ## Why
 
 Every ML framework hides the same 50 lines of math behind abstractions. This project is about writing those 50 lines and actually knowing what they do.
+
+---
+
+## Notes on the code
+
+The code is heavily commented. This is a study project, so comments explain the reasoning behind each decision, not just what the code does.
+
+Questions that came up during the study sessions, and their answers, are in [knowledge-questions.md](knowledge-questions.md).
