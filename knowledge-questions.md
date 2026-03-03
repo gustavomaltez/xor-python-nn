@@ -111,3 +111,19 @@ The input layer just holds the raw values you feed in. It doesn't compute anythi
 Layer 1 is the hidden layer. It takes the raw inputs, multiplies by `weights_input_hidden`, adds `bias_hidden`, then applies sigmoid.
 
 Layer 2 is the output layer. It takes the hidden layer's results, multiplies by `weights_hidden_output`, adds `bias_output`, then applies sigmoid again.
+
+---
+
+**What is Mean Squared Error (MSE) and why do we need it?**
+
+MSE is a single number that represents how wrong the network is across all predictions. For each prediction, compute `(prediction - expected)²`, then average all the results. The closer to 0, the better.
+
+Backpropagation needs this number to know how much to adjust the weights. Lower MSE means the network is performing better. During training you'll see it start high and drop toward 0 as the network learns.
+
+---
+
+**Why do we square the error instead of just subtracting?**
+
+Two reasons. First, squaring makes negatives positive. If prediction is `0.8` and expected is `1`, the raw error is `-0.2`. Without squaring, errors from different predictions would cancel each other out.
+
+Second, squaring punishes large errors more than small ones. An error of `0.4` squared is `0.16`, but an error of `0.8` squared is `0.64`, not just double. The network is pushed harder to fix large mistakes.

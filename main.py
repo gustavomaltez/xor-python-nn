@@ -74,6 +74,7 @@ def sigmoid(x):
 # Forward pass
 # ------------
 # This function takes one input and runs it through the network to get a prediction
+#
 # 1. For each hidden neuron we:
 # - Multiply each input by its weight
 # - Sum them upp
@@ -103,3 +104,32 @@ def forward(inputs):
 
     # Step 3
     return output
+
+
+# Mean Squared Error (MSE)
+# ------------------------
+# Calculates a single number that represents how wrong the network is across all
+# 4 predictions.
+#
+# 1. For each prediction we calculate (prediction - expected)²
+# 2. Then we average the 4 values (total / size)
+#
+# -> This step is critical for the following reasons:
+# - By squaring it, we turn negative numbers positives (e.g: if the prediction
+# is 0.8 but we expected 1, the error is -0.2. Squaring it would give 0.04).
+# Without squaring, errors would cancel each other out.
+# - Squaring punishes big errors more than small ones, so the network is forced
+# to fix harder larger mistakes. (e.g: An error of 0.4 squared is 0.16, but an
+# error of 0.8 squared is 0.64)
+# - The next step (backpropagation) needs to know how wrong the network is so it
+# can adjust the weights. Lower MSE values means that the network is performing
+# better. That said, during the training we can notice the MSE decreasing as the
+# network learns
+def mean_squared_error(predictions, expected):
+    size = len(predictions)
+    total = 0
+
+    for i in range(size):
+        total += (predictions[i] - expected[i]) ** 2
+
+    return total / size
