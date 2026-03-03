@@ -69,3 +69,37 @@ bias_output = random.uniform(-1, 1)
 # between 0 and 1
 def sigmoid(x):
     return 1 / (1 + math.exp(-x))
+
+
+# Forward pass
+# ------------
+# This function takes one input and runs it through the network to get a prediction
+# 1. For each hidden neuron we:
+# - Multiply each input by its weight
+# - Sum them upp
+# - Add the bias
+# - Apply sigmoid
+# 2. For the output neuron we (using the hidden layer's output):
+# - Multiply each input by its weight
+# - Sum them upp
+# - Add the bias
+# - Apply sigmoid
+# 3. Return the final value
+def forward(inputs):
+    hidden = [0, 0]
+
+    # Step 1
+    for i in range(len(hidden)):
+        input_a_times_weight = inputs[0] * weights_input_hidden[0][i]
+        input_b_times_weight = inputs[1] * weights_input_hidden[1][i]
+        hidden[i] = sigmoid(
+            input_a_times_weight + input_b_times_weight + bias_hidden[i]
+        )
+
+    # Step 2
+    hidden_a_times_weight = hidden[0] * weights_hidden_output[0]
+    hidden_b_times_weight = hidden[1] * weights_hidden_output[1]
+    output = sigmoid(hidden_a_times_weight + hidden_b_times_weight + bias_output)
+
+    # Step 3
+    return output
